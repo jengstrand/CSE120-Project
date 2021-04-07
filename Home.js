@@ -52,6 +52,10 @@ function Home() {
     this is the Home page
     <div className="information">
         <label>Username:</label>
+        <input type="text"></input>
+
+        <label>Password:</label>
+        <input type="text"></input>
         
     </div>
 
