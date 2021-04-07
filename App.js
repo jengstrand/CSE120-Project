@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
 import About from './About'
 import Home from './Home'
 import PageNotFound from './PageNotFound'
+import Register from './Register'
 function App() {
 
   const [name, setName] = useState("");
@@ -53,69 +54,31 @@ function App() {
   }
 
   return (
-    <>
+    <div className="App"><>
+    This is the Volunteer App
     <Router>
     <div style={{width: 100 + "vw", height: 80, backgroundColor: 'lightblue'}}>
-      <Link to="/"> Home </Link>
+        <Link to="/"> Home </Link>  
       <Link to="/about"> About  </Link>
+      <Link to="/register"> Register  </Link>
     </div>
     
         <Switch>
-          <Route path="/about" exact component={About}/>
-          <Route path="/" exact component={Home}/>
+          <Route exact path="/about" exact component={About}/>
+          <Route exact path="/" exact component={Home}/>
+          <Route path="/register" exact component={Register}/>
           <Route path="*" exact component={PageNotFound}/>
         </Switch>
       </Router>
     </>
-    // <div className="App">
-    //   <div className="information">
-    //     <label>Name:</label>
-    //     <input type = "text" onChange={(event) => {
-    //       setName(event.target.value);
-    //     }}
-    //     />
-      
-    //     <label>Age:</label>
-    //     <input type = "number" onChange={(event) => {
-    //       setAge(event.target.value);
-    //     }}
-    //     />
-          
-    //     <label>Country:</label>
-    //     <input type = "text"onChange={(event) => {
-    //       setCountry(event.target.value);
-    //     }}
-    //     />
 
-    //     <label>Position:</label>
-    //     <input type = "text" onChange={(event) => {
-    //       setPosition(event.target.value);
-    //     }}
-    //     />
+    </div>
 
-    //     <label>Wage (year):</label>
-    //     <input type = "number" onChange={(event) => {
-    //       setWage(event.target.value);
-    //     }}
-    //     />
-    //     <button onClick= {addEmployee}>Add Employee</button>
-    //   </div>
-    //     <div className = "employees">
-    //     <button onClick={getEmployees}>Show Employees</button>
 
-    //     {employeeList.map((val, key) => {
-    //       return <div className="employee"> 
-    //       <h3>Name: {val.name}</h3> 
-    //       <h3>Age: {val.age}</h3> 
-    //       <h3>Country: {val.country}</h3> 
-    //       <h3>Position: {val.position}</h3> 
-    //       <h3>Wage: {val.wage}</h3> 
-    //       </div>
-    //     })}
-    //     </div>
-    // </div>
+    
     
   );
+  
 }
 
 export default App;
