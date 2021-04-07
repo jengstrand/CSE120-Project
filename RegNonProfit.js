@@ -13,7 +13,7 @@ function RegNonProfit() {
     const [addressReg, setAddressReg] = useState(0);
     
     const addOrganization = () => {
-        Axios.post("http://localhost:3001/RegVolunteer", {
+        Axios.post("http://localhost:3001/RegOrganization", {
           username: usernameReg, 
           password: passwordReg, 
           email: emailReg,
