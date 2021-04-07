@@ -33,7 +33,24 @@ app.post("/RegVolunteer", (req,res) => {
     );
 });
 
+app.post("/RegOrganization", (req,res) => {
 
+    const username = req.body.username 
+    const password = req.body.password
+
+    db.query(
+        "INSERT INTO organizations (username,password,email,orgname,phone,address) VALUES (?,?,?,?,?,?)",
+        [username,password,email,orgname,phone,address],
+        (err,result) => {
+            if (err) {
+                console.log(err)
+            }
+            else {
+                res.send("Values Inserted")
+            }
+        }
+    );
+});
 
 
 
