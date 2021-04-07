@@ -14,6 +14,31 @@ const db = mysql.createConnection({
 
 });
 
+app.post("/RegVolunteer", (req,res) => {
+
+    const username = req.body.username 
+    const password = req.body.password
+
+    db.query(
+        "INSERT INTO volunteers (username,password,email,firstname,lastname,phone,age,zipcode,travel) VALUES (?,?,?,?,?,?,?,?,?)",
+        [username,password,email,firstname,lastname,phone,age,zipcode,travel],
+        (err,result) => {
+            if (err) {
+                console.log(err)
+            }
+            else {
+                res.send("Values Inserted")
+            }
+        }
+    );
+});
+
+
+
+
+
+
+
 app.post("/create", (req,res) => {
     const name = req.body.name
     const age = req.body.age
