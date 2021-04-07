@@ -52,16 +52,16 @@ function RegVolunteer () {
             <input type = "text" onChange={
                 (e) => {setLastNameReg(e.target.value)}}/>
             <label>Set Phone Number:</label>
-            <input type = "text" onChange={
+            <input type = "number" onChange={
                 (e) => {setPhoneNumReg(e.target.value)}}/>
             <label>Set Age:</label>
-            <input type = "text" onChange={
+            <input type = "number" onChange={
                 (e) => {setAgeReg(e.target.value)}}/>
             <label>Set Zipcode:</label>
-            <input type = "text" onChange={
+            <input type = "number" onChange={
                 (e) => {setZipcodeReg(e.target.value)}}/>
             <label>Set Travel Distance (miles):</label>
-            <input type = "text" onChange={
+            <input type = "number" onChange={
                 (e) => {setTravelReg(e.target.value)}}/>
             <button onClick={addVolunteer}>Register Volunteer</button>
 
