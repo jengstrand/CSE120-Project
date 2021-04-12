@@ -12,6 +12,8 @@ function RegNonProfit() {
     const [phoneNumReg, setPhoneNumReg] = useState(0);
     const [addressReg, setAddressReg] = useState(0);
     
+    const [nonProfitStatusReg, setNonProfitStatusReg] = useState("");
+
     const addOrganization = () => {
         Axios.post("http://localhost:3001/RegOrganization", {
           username: usernameReg, 
@@ -21,7 +23,14 @@ function RegNonProfit() {
           phone: phoneNumReg,
           address: addressReg,
         }).then((response)=> {
-          console.log("success");
+            if (response.data.message) {
+                setNonProfitStatusReg(response.data.message)
+            }
+            else {
+                setNonProfitStatusReg("Successfully Registered")
+            }
+          
+            console.log(response);
         });
     };
 
