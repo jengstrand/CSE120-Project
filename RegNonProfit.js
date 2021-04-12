@@ -60,7 +60,7 @@ function RegNonProfit() {
                 (e) => {setAddressReg(e.target.value)}}/>
             <button onClick={addOrganization}>Register Organization</button>
 
-            
+            <h1>{nonProfitStatusReg}</h1>
         </div>
 
         </div>
