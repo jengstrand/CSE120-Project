@@ -13,7 +13,7 @@ function RegVolunteer () {
     const [zipcodeReg, setZipcodeReg] = useState(0);
     const [TravelReg, setTravelReg] = useState(0);
 
-    const [VolunteerUserList, setVolunteerUserList] = useState([])
+    const [volunteerStatusReg, setVolunteerStatusReg] = useState("");
 
     const addVolunteer = () => {
         Axios.post("http://localhost:3001/RegVolunteer", {
@@ -27,7 +27,13 @@ function RegVolunteer () {
           zipcode: zipcodeReg,
           travel: TravelReg
         }).then((response)=> {
-          console.log("success");
+            if (response.data.message) {
+                setVolunteerStatusReg(response.data.message)
+            }
+            else {
+                setVolunteerStatusReg("Successfully Registered")
+            }
+            console.log(response);
         });
     };
 
@@ -65,7 +71,7 @@ function RegVolunteer () {
                 (e) => {setTravelReg(e.target.value)}}/>
             <button onClick={addVolunteer}>Register Volunteer</button>
 
-            
+            <h1>{volunteerStatusReg}</h1>
         </div>
 
     );
