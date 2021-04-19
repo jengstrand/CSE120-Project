@@ -19,7 +19,7 @@ export default function home({navigation}) {
   const [usernameReg, setUsernameReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
 
-    const buttonHandler = () =>{
+    const volunteerButtonHandler = () =>{
           navigation.navigate('volunteersignup');
     }
 
@@ -66,7 +66,7 @@ export default function home({navigation}) {
         <TouchableOpacity style={styles.loginBtn}>
           <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={buttonHandler} style={styles1.loginBtn}>
+        <TouchableOpacity onPress={volunteerButtonHandler} style={styles1.loginBtn}>
           <Text style={styles.loginText}>VOLUNTEER SIGNUP</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles2.loginBtn}>
