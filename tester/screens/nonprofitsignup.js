@@ -1,31 +1,30 @@
-import { StatusBar } from "expo-status-bar";
-import * as React from 'react'
+import React from "react";
 import { useState } from "react";
-// import React from "react";
-//import { AppRegistry, Image } from "react-native";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-//import volunteerSU from "./routes/volunteerSU";
 import {
   StyleSheet,
-  Text,
   View,
+  Text,
+  Button,
   Image,
-  ImageBackground,
   TextInput,
   TouchableOpacity,
+  ImageBackground,
 } from "react-native";
 
-export default function home({navigation}) {
-  const [usernameReg, setUsernameReg] = useState("");
-  const [passwordReg, setPasswordReg] = useState("");
+export default function nonprofitsignup({ navigation }) {
+  const [orgName, setOrgNameReg] = useState("");
+  const [password, setPasswordReg] = useState("");
+  const [email, setEmailReg] = useState("");
+  const [phoneNum, setPhoneNumberReg] = useState("");
+  const [Location, setLocationReg] = useState("");
+  const [address, setAddressReg] = useState("");
+  //const [city, setCityReg] = useState("");
+  const [zipCode, setZipCodeReg] = useState("");
 
-    const volunteerButtonHandler = () =>{
-          navigation.navigate('volunteersignup');
-    }
-
-    const nonprofitButtonHandler = () =>{
-      navigation.navigate('nonprofitsignup');
+  const nonprofitButtonHandler = () =>{
+    navigation.navigate('nonprofitsignup');
 }
+
 
   return (
     <ImageBackground
@@ -46,10 +45,50 @@ export default function home({navigation}) {
         <View style={styles.inputView}>
           <TextInput
             style={styles.inputText}
-            placeholder="Email..."
+            placeholder="Organization Name..."
             placeholderTextColor="white"
             onChangeText={(e) => {
-              setUsernameReg(e);
+              setOrgNameReg(e);
+            }}
+          />
+        </View>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Address..."
+            placeholderTextColor="white"
+            onChangeText={(e) => {
+              setAddressReg(e);
+            }}
+          />
+        </View>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Location/City..."
+            placeholderTextColor="white"
+            onChangeText={(e) => {
+              setLocationReg(e);
+            }}
+          />
+        </View>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Zip Code..."
+            placeholderTextColor="white"
+            onChangeText={(e) => {
+              setZipCodeReg(e);
+            }}
+          />
+        </View>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.inputText}
+            placeholder="Phone Number..."
+            placeholderTextColor="white"
+            onChangeText={(e) => {
+              setPhoneNumberReg(e);
             }}
           />
         </View>
@@ -57,6 +96,16 @@ export default function home({navigation}) {
           <TextInput
             secureTextEntry
             style={styles2.inputText}
+            placeholder="Email..."
+            placeholderTextColor="white"
+            onChangeText={(e) => {
+              setEmailReg(e);
+            }}
+          />
+        </View>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.inputText}
             placeholder="Password..."
             placeholderTextColor="white"
             onChangeText={(e) => {
@@ -64,17 +113,8 @@ export default function home({navigation}) {
             }}
           />
         </View>
-        <TouchableOpacity>
-          <Text style={styles.forgot}>Forgot Password?</Text>
-        </TouchableOpacity>
         <TouchableOpacity style={styles.loginBtn}>
           <Text style={styles.loginText}>LOGIN</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={volunteerButtonHandler} style={styles1.loginBtn}>
-          <Text style={styles.loginText}>VOLUNTEER SIGNUP</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={nonprofitButtonHandler} style={styles2.loginBtn}>
-          <Text style={styles.loginText}>NONPROFIT SIGNUP</Text>
         </TouchableOpacity>
       </View>
     </ImageBackground>
@@ -158,15 +198,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 20,
   },
-  inputText: {
-    height: 50,
-    color: "white",
-  },
-  forgot: {
-    color: "white",
-    fontSize: 11,
-    marginBottom: 50,
-  },
   loginBtn: {
     width: "80%",
     backgroundColor: "royalblue",
@@ -175,6 +206,15 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     justifyContent: "center",
+  },
+  inputText: {
+    height: 50,
+    color: "white",
+  },
+  forgot: {
+    color: "white",
+    fontSize: 11,
+    marginBottom: 50,
   },
   loginText: {
     color: "white",

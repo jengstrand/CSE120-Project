@@ -2,7 +2,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 import Home from '../screens/Home';
 import  volunteersignup  from '../screens/volunteersignup';
-
+import nonprofitsignup from "../screens/nonprofitsignup";
 
 
 // const Stack = createStackNavigator();
@@ -29,7 +29,13 @@ const screens = {
     volunteersignup:{
         title:'Volunteer sign up',
         screen: volunteersignup
-    }
+    },
+
+    nonprofitsignup:{
+      title:'Nonprofit sign up',
+      screen: nonprofitsignup
+  }
+
 }
 const AuthNavigator = createStackNavigator(screens);
 export default createAppContainer(AuthNavigator);
