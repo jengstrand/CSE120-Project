@@ -65,7 +65,6 @@ export default function home({ navigation }) {
             navigation.navigate("nonprofitprofile");
             //alert(message);
           } else {
-            alert("Invalid credentials");
             tx.executeSql(
               "select * from Volunteer where Email = ? and Password = ?",
               [email, passwordReg],
