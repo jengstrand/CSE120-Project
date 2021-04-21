@@ -19,13 +19,43 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+
+
 export default function home({ navigation }) {
-  const [usernameReg, setEmail] = useState("");
-  const [passwordReg, setPasswordReg] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPasswordReg] = useState("");
   const [firstName, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
   const [age, setAge] = useState("");
+
+  const db = openDatabase("db");
+
+  const register = () => {
+    db.transaction((tx) => {
+
+      tx.executeSql(
+        "insert into Volunteer (Email, Password, Firstname, Lastname, PhoneNumber) values (?,?,?,?,?)",
+        [email, password, firstName, lastName, phoneNum]
+      );
+
+      tx.executeSql(
+        "select * from Volunteer where Email = ?",
+        [email],
+        (tx, results) => {
+          var len = results.rows.length;
+          console.log("len", len);
+          if (len > 0) {
+            alert("found");
+            console.log("Found!");
+          } else {
+            alert("No user found");
+            console.log("Not Found!");
+          }
+        }
+      );
+    });
+  };
 
   return (
     <ImageBackground
@@ -95,7 +125,7 @@ export default function home({ navigation }) {
               placeholder="Phone Number..."
               placeholderTextColor="white"
               onChangeText={(e) => {
-                setPhoneNumber(e);
+                setPhoneNum(e);
               }}
             />
           </View>
@@ -111,6 +141,9 @@ export default function home({ navigation }) {
               }}
             />
           </View>
+          <TouchableOpacity onPress={register} style={styles.loginBtn}>
+            <Text style={styles.loginText}>Register</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </ImageBackground>

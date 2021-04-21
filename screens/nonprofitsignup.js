@@ -29,11 +29,6 @@ export default function nonprofitsignup({ navigation }) {
   const register = () => {
     db.transaction((tx) => {
       tx.executeSql(
-        "create table if not exists Nonprofit (OrganizationName text, Address text, Location text, Zipcode text, PhoneNumber text, Email text, Password text)",
-        []
-      );
-
-      tx.executeSql(
         "insert into Nonprofit (OrganizationName, Address, Location, Zipcode, PhoneNumber, Email, Password) values (?,?,?,?,?,?,?)",
         [orgName, address, Location, zipCode, phoneNum, email, password]
       );
