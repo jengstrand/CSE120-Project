@@ -5,6 +5,8 @@ import { useState } from "react";
 //import { AppRegistry, Image } from "react-native";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //import volunteerSU from "./routes/volunteerSU";
+import { openDatabase } from "expo-sqlite";
+//import db from "../screens/nonprofitsignup";
 import {
   StyleSheet,
   Text,
@@ -13,11 +15,14 @@ import {
   ImageBackground,
   TextInput,
   TouchableOpacity,
+  KeyboardAvoidingView,
 } from "react-native";
 
+var db = openDatabase("UWMCDatabase");
+
 export default function home({ navigation }) {
-  const [usernameReg, setUsernameReg] = useState("");
-  const [passwordReg, setPasswordReg] = useState("");
+  const [email, setEmail] = useState("");
+  const [passwordReg, setPassword] = useState("");
 
   const volunteerButtonHandler = () => {
     navigation.navigate("volunteersignup");
@@ -25,6 +30,59 @@ export default function home({ navigation }) {
 
   const nonprofitButtonHandler = () => {
     navigation.navigate("nonprofitsignup");
+  };
+
+  React.useEffect(() => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "create table if not exists Nonprofit (OrganizationName text, Address text, Location text, Zipcode text, PhoneNumber text, Email text, Password text)",
+        []
+      );
+      tx.executeSql("insert into Nonprofit (Email) values (?)", ["Eman"]);
+
+      tx.executeSql(
+        "create table if not exists Volunteer (Email, Password, Firstname, Lastname, PhoneNumber)",
+        []
+      );
+    });
+  });
+
+  const handleLogin = () => {
+    db.transaction((tx) => {
+      // tx.executeSql(
+      //   "insert into Nonprofit (OrganizationName, Address, Location, Zipcode, PhoneNumber, Email, Password) values (?,?,?,?,?,?,?)",
+      //   [orgName, address, Location, zipCode, phoneNum, email, password]
+      // );
+
+      tx.executeSql(
+        "select * from Nonprofit where Email = ? and Password = ?",
+        [email, passwordReg],
+        (tx, results) => {
+          var len = results.rows.length;
+          //console.log("len", len);
+          if (len > 0) {
+            var message = "Welcome Back ";
+            navigation.navigate("nonprofitprofile");
+            //alert(message);
+          } else {
+            //alert("No user found");
+            tx.executeSql(
+              "select * from Volunteer where Email = ? and Password = ?",
+              [email, passwordReg],
+              (tx, results) => {
+                var len1 = results.rows.length;
+                if (len1 > 0) {
+                  //alert("Welcome Back !", email, "!");
+                  navaigation.navigate("volunteerprofile");
+                } else {
+                  //alert("Wrong Email/Password Combination");
+                }
+              }
+            );
+          }
+        }
+      );
+    });
   };
 
   return (
@@ -44,14 +102,16 @@ export default function home({ navigation }) {
           }}
         />
         <View style={styles.inputView}>
-          <TextInput
-            style={styles.inputText}
-            placeholder="Email..."
-            placeholderTextColor="white"
-            onChangeText={(e) => {
-              setUsernameReg(e);
-            }}
-          />
+          <KeyboardAvoidingView behavior="padding">
+            <TextInput
+              style={styles.inputText}
+              placeholder="Email..."
+              placeholderTextColor="white"
+              onChangeText={(e) => {
+                setEmail(e);
+              }}
+            />
+          </KeyboardAvoidingView>
         </View>
         <View style={styles.inputView}>
           <TextInput
@@ -60,14 +120,15 @@ export default function home({ navigation }) {
             placeholder="Password..."
             placeholderTextColor="white"
             onChangeText={(e) => {
-              setPasswordReg(e);
+              setPassword(e);
             }}
           />
         </View>
+
         <TouchableOpacity>
           <Text style={styles.forgot}>Forgot Password?</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.loginBtn}>
+        <TouchableOpacity onPress={handleLogin} style={styles.loginBtn}>
           <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity>
         <TouchableOpacity

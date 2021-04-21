@@ -29,11 +29,14 @@ export default function home({ navigation }) {
   const [phoneNum, setPhoneNum] = useState("");
   const [age, setAge] = useState("");
 
-  const db = openDatabase("db");
+  var db = openDatabase("UWMCDatabase");
+
+  const volunteerButtonHandler = () => {
+    navigation.navigate("volunteerprofile");
+  };
 
   const register = () => {
     db.transaction((tx) => {
-
       tx.executeSql(
         "insert into Volunteer (Email, Password, Firstname, Lastname, PhoneNumber) values (?,?,?,?,?)",
         [email, password, firstName, lastName, phoneNum]
@@ -46,11 +49,8 @@ export default function home({ navigation }) {
           var len = results.rows.length;
           console.log("len", len);
           if (len > 0) {
-            alert("found");
-            console.log("Found!");
-          } else {
-            alert("No user found");
-            console.log("Not Found!");
+           // alert("Volunteer Account Created");
+           volunteerButtonHandler();
           }
         }
       );

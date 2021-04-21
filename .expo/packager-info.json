@@ -1,5 +1,10 @@
 {
   "devToolsPort": 19002,
   "expoServerPort": null,
-  "packagerPort": 19000
+  "packagerPort": 19000,
+  "packagerPid": null,
+  "expoServerNgrokUrl": "https://8h-cd5.anonymous.cse120-project.exp.direct",
+  "packagerNgrokUrl": "https://packager.8h-cd5.anonymous.cse120-project.exp.direct",
+  "ngrokPid": 12824,
+  "webpackServerPort": null
 }

@@ -24,12 +24,16 @@ export default function nonprofitsignup({ navigation }) {
   //const [city, setCityReg] = useState("");
   const [zipCode, setZipCodeReg] = useState("");
 
-  const db = openDatabase("db");
+  const nonprofitButtonHandler = () => {
+    navigation.navigate("nonprofitprofile");
+  };
+
+  var db = openDatabase("UWMCDatabase");
 
   const register = () => {
     db.transaction((tx) => {
       tx.executeSql(
-        "insert into Nonprofit (OrganizationName, Address, Location, Zipcode, PhoneNumber, Email, Password) values (?,?,?,?,?,?,?)",
+        "insert into Nonprofit (OrganizationName, Address, location, Zipcode, PhoneNumber, Email, Password) values (?,?,?,?,?,?,?)",
         [orgName, address, Location, zipCode, phoneNum, email, password]
       );
 
@@ -38,18 +42,14 @@ export default function nonprofitsignup({ navigation }) {
         [orgName],
         (tx, results) => {
           var len = results.rows.length;
-          console.log("len", len);
           if (len > 0) {
-            alert("found");
-            console.log("Found!");
-          } else {
-            alert("No user found");
-            console.log("Not Found!");
+            //alert("Nonprofit User Created!");
           }
         }
       );
     });
   };
+
 
   return (
     <ImageBackground
