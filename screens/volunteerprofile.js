@@ -7,13 +7,13 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-export default class Profile extends Component {
+export default class volunteerProfile extends Component {
     
   render() {
     return (
       <View style={styles.container}>
           <View style={styles.header}></View>
-          <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
+          <Image style={styles.avatar} source={require("../assets/volunteerIcon.png")}/>
           <View style={styles.body}>
             <View style={styles.bodyContent}>
               <Text style={styles.name}>John Doe</Text>
@@ -21,10 +21,10 @@ export default class Profile extends Component {
               <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
               
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Opcion 1</Text>  
+                <Text>Look for events</Text>  
               </TouchableOpacity>              
               <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Opcion 2</Text> 
+                <Text>View registered events</Text> 
               </TouchableOpacity>
             </View>
         </View>
@@ -35,12 +35,12 @@ export default class Profile extends Component {
 
 const styles = StyleSheet.create({
   header:{
-    backgroundColor: "#00BFFF",
+    backgroundColor: "midnightblue",
     height:200,
   },
   avatar: {
-    width: 130,
-    height: 130,
+    width: 110,
+    height: 110,
     borderRadius: 63,
     borderWidth: 4,
     borderColor: "white",

@@ -25,11 +25,11 @@ export default function home({ navigation }) {
   const [passwordReg, setPassword] = useState("");
 
   const volunteerButtonHandler = () => {
-    navigation.navigate("volunteersignup");
+    navigation.navigate("volunteersignup", {email});
   };
 
   const nonprofitButtonHandler = () => {
-    navigation.navigate("nonprofitsignup");
+    navigation.navigate("nonprofitsignup", {email});
   };
 
   React.useEffect(() => {
@@ -38,7 +38,7 @@ export default function home({ navigation }) {
         "create table if not exists Nonprofit (OrganizationName text, Address text, Location text, Zipcode text, PhoneNumber text, Email text, Password text)",
         []
       );
-      tx.executeSql("insert into Nonprofit (Email) values (?)", ["Eman"]);
+      //tx.executeSql("insert into Nonprofit (Email) values (?)", ["Eman"]);
 
       tx.executeSql(
         "create table if not exists Volunteer (Email, Password, Firstname, Lastname, PhoneNumber)",
@@ -62,7 +62,7 @@ export default function home({ navigation }) {
           //console.log("len", len);
           if (len > 0) {
             var message = "Welcome Back ";
-            navigation.navigate("nonprofitprofile");
+            navigation.navigate("nonprofitprofile", {email});
             //alert(message);
           } else {
             tx.executeSql(
@@ -72,7 +72,7 @@ export default function home({ navigation }) {
                 var len1 = results.rows.length;
                 if (len1 > 0) {
                   //alert("Welcome Back !", email, "!");
-                  navaigation.navigate("volunteerprofile");
+                  navaigation.navigate("volunteerprofile", {email});
                 } else {
                   alert("Invalid credentials");
                 }

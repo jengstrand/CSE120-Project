@@ -1,42 +1,80 @@
-import React, { Component } from 'react';
+import React from "react";
+import { useState } from "react";
+import Axios from "axios";
+import { openDatabase } from "expo-sqlite";
 import {
   StyleSheet,
-  Text,
   View,
+  Text,
+  Button,
   Image,
-  TouchableOpacity
-} from 'react-native';
+  TextInput,
+  TouchableOpacity,
+  ImageBackground,
+  ScrollView,
+} from "react-native";
 
-export default class Profile extends Component {
 
-  render() {
+export default function nonprofitprofile({ navigation }) {
+
+    var db = openDatabase("UWMCDatabase");
+
+    const email = navigation.getParam('email');
+    console.log(email);
+
+    const create_event_buttonHandler = () => {
+        navigation.navigate("createevent", {email});
+    }
+
+    const view_events_buttonHandler = () => {
+        db.transaction((tx) => {
+            tx.executeSql(
+              "select * from Nonprofit where Email = ?",
+              [email],
+              (tx, results) => {
+                var len = results.rows.length;
+                if (len > 0) {
+                    //console.log(results.rows._array[0]["OrganizationName"]);
+                    const organization = results.rows._array[0]["OrganizationName"];
+                    navigation.navigate("ListingsScreen",{organization});
+                }else{
+                  alert("You do not have any events created");
+                }
+
+              }
+            );
+         });
+
+
+       
+    }
+
     return (
       <View style={styles.container}>
           <View style={styles.header}></View>
-          <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
+          <Image style={styles.avatar} source={require("../assets/nonprofitIcon.png")}/>
           <View style={styles.body}>
             <View style={styles.bodyContent}>
               <Text style={styles.name}>John Doe</Text>
               <Text style={styles.info}>UX Designer / Mobile developer</Text>
               <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
               
-              <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Opcion 1</Text>  
+              <TouchableOpacity onPress={create_event_buttonHandler} style={styles.buttonContainer}>
+                <Text>Create Event</Text>  
               </TouchableOpacity>              
-              <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Opcion 2</Text> 
+              <TouchableOpacity onPress={view_events_buttonHandler} style={styles.buttonContainer}>
+                <Text>Manage Events</Text> 
               </TouchableOpacity>
             </View>
         </View>
       </View>
     );
-  }
 }
 
 const styles = StyleSheet.create({
   header:{
-    backgroundColor: "#00BFFF",
     height:200,
+    backgroundColor: "midnightblue",
   },
   avatar: {
     width: 130,

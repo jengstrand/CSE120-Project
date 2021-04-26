@@ -15,14 +15,12 @@ import {
 } from "react-native";
 
 export default function nonprofitsignup({ navigation }) {
+  
   const [orgName, setOrgNameReg] = useState("");
   const [password, setPasswordReg] = useState("");
   const [email, setEmailReg] = useState("");
   const [phoneNum, setPhoneNumberReg] = useState("");
-  const [Location, setLocationReg] = useState("");
   const [address, setAddressReg] = useState("");
-  //const [city, setCityReg] = useState("");
-  const [zipCode, setZipCodeReg] = useState("");
 
   const nonprofitButtonHandler = () => {
     navigation.navigate("nonprofitprofile");
@@ -33,8 +31,8 @@ export default function nonprofitsignup({ navigation }) {
   const register = () => {
     db.transaction((tx) => {
       tx.executeSql(
-        "insert into Nonprofit (OrganizationName, Address, location, Zipcode, PhoneNumber, Email, Password) values (?,?,?,?,?,?,?)",
-        [orgName, address, Location, zipCode, phoneNum, email, password]
+        "insert into Nonprofit (OrganizationName, Address, PhoneNumber, Email, Password) values (?,?,?,?,?)",
+        [orgName, address, phoneNum, email, password]
       );
 
       tx.executeSql(
@@ -48,6 +46,7 @@ export default function nonprofitsignup({ navigation }) {
         }
       );
     });
+    nonprofitButtonHandler();
   };
 
 
@@ -91,26 +90,6 @@ export default function nonprofitsignup({ navigation }) {
           <View style={styles.inputView}>
             <TextInput
               style={styles.inputText}
-              placeholder="Location/City..."
-              placeholderTextColor="white"
-              onChangeText={(e) => {
-                setLocationReg(e);
-              }}
-            />
-          </View>
-          <View style={styles.inputView}>
-            <TextInput
-              style={styles.inputText}
-              placeholder="Zip Code..."
-              placeholderTextColor="white"
-              onChangeText={(e) => {
-                setZipCodeReg(e);
-              }}
-            />
-          </View>
-          <View style={styles.inputView}>
-            <TextInput
-              style={styles.inputText}
               placeholder="Phone Number..."
               placeholderTextColor="white"
               onChangeText={(e) => {
@@ -120,7 +99,6 @@ export default function nonprofitsignup({ navigation }) {
           </View>
           <View style={styles.inputView}>
             <TextInput
-              secureTextEntry
               style={styles2.inputText}
               placeholder="Email..."
               placeholderTextColor="white"
@@ -131,6 +109,7 @@ export default function nonprofitsignup({ navigation }) {
           </View>
           <View style={styles.inputView}>
             <TextInput
+            secureTextEntry
               style={styles.inputText}
               placeholder="Password..."
               placeholderTextColor="white"

@@ -5,7 +5,9 @@ import volunteersignup from "../screens/volunteersignup";
 import nonprofitsignup from "../screens/nonprofitsignup";
 import nonprofitprofile from "../screens/nonprofitprofile";
 import volunteerprofile from "../screens/volunteerprofile";
-
+import createevent from "../screens/createevent";
+import nonprofitviewevents from "../screens/nonprofitviewevents";
+import ListingsScreen from "../screens/ListingsScreen";
 
 const screens = {
   Home: {
@@ -43,6 +45,29 @@ const screens = {
       headerShown:false
     }
   },
+
+  createevent: {
+    screen: createevent,
+    navigationOptions: {
+      title: 'Create Event'
+    }
+  },
+
+  nonprofitviewevents: {
+    screen: nonprofitviewevents,
+    navigationOptions: {
+      title: 'Manage Events'
+    }
+  },
+
+  ListingsScreen: {
+    screen: ListingsScreen,
+    navigationOptions: {
+      title: 'Manage Events'
+    }
+  },
+
+
 };
 
 const homestack = createStackNavigator(screens);

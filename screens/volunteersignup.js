@@ -19,7 +19,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-
+var db = openDatabase("UWMCDatabase");
 
 export default function home({ navigation }) {
   const [email, setEmail] = useState("");
@@ -29,7 +29,6 @@ export default function home({ navigation }) {
   const [phoneNum, setPhoneNum] = useState("");
   const [age, setAge] = useState("");
 
-  var db = openDatabase("UWMCDatabase");
 
   const volunteerButtonHandler = () => {
     navigation.navigate("volunteerprofile");
@@ -132,7 +131,6 @@ export default function home({ navigation }) {
 
           <View style={styles.inputView}>
             <TextInput
-              secureTextEntry
               style={styles2.inputText}
               placeholder="Age..."
               placeholderTextColor="white"
