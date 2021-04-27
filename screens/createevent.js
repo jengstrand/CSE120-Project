@@ -35,17 +35,17 @@ export default function createevent({ navigation }) {
     const register = () => {
         db.transaction((tx) => {
           tx.executeSql(
-            "insert into Events (Eventname, Description, Type, Address, Organization, Date, Time) values (?,?,?,?,?,?,?)",
+            "insert into Events2 (Eventname, Description, Type, Address, Organization, Date, Time) values (?,?,?,?,?,?,?)",
             [eventname, description, eventtype,address, orgName, date, time]
           );
     
           tx.executeSql(
-            "select * from Events where Organization = ?",
+            "select * from Events2 where Organization = ?",
             [orgName],
             (tx, results) => {
               var len = results.rows.length;
               if (len > 0) {
-                //console.log(results.rows._array[0]["Organization"]);
+                //console.log(results.rows._array);
                 alert("Event Created!");
                 navigation.goBack();
               }

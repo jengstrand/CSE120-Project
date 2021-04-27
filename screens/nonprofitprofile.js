@@ -16,7 +16,7 @@ import {
 
 
 export default function nonprofitprofile({ navigation }) {
-
+  
     var db = openDatabase("UWMCDatabase");
 
     const email = navigation.getParam('email');
@@ -25,6 +25,8 @@ export default function nonprofitprofile({ navigation }) {
     const create_event_buttonHandler = () => {
         navigation.navigate("createevent", {email});
     }
+
+  
 
     const view_events_buttonHandler = () => {
         db.transaction((tx) => {
@@ -44,7 +46,7 @@ export default function nonprofitprofile({ navigation }) {
               }
             );
          });
-
+ 
 
        
     }
