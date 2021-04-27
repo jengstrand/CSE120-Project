@@ -22,6 +22,11 @@ export default function nonprofitprofile({ navigation }) {
     const email = navigation.getParam('email');
     console.log(email);
 
+    const signout_button_handler = () => {
+      navigation.navigate("Home");
+      navigation.popToTop();
+    }
+
     const create_event_buttonHandler = () => {
         navigation.navigate("createevent", {email});
     }
@@ -36,13 +41,37 @@ export default function nonprofitprofile({ navigation }) {
                 if (len > 0) {
                     //console.log(results.rows._array[0]["OrganizationName"]);
                     const organization = results.rows._array[0]["OrganizationName"];
-                    navigation.navigate("ListingsScreen",{organization});
+                    tx.executeSql(
+                          "select * from Events3 where Organization = ?",
+                          [organization],
+                          (tx, results) => {
+                            var len = results.rows.length;
+                            if (len > 0) {
+                             // console.log(results.rows._array);
+                              var listings = [];
+                              for(var i = 0; i < len; i++){
+                                entry = {
+                                  id: i+1, 
+                                  title: results.rows._array[i]["Eventname"],
+                                  description: results.rows._array[i]["Description"],
+                                  image: require("../assets/united.png") 
+                                }
+                                listings.push(entry);
+                              }
+                              navigation.navigate("ListingsScreen",{listings});
+                            }
+
+                            
+                          }
+                        );
+                    
                 }else{
                   alert("You do not have any events created");
                 }
 
               }
             );
+
          });
 
 
@@ -65,6 +94,11 @@ export default function nonprofitprofile({ navigation }) {
               <TouchableOpacity onPress={view_events_buttonHandler} style={styles.buttonContainer}>
                 <Text>Manage Events</Text> 
               </TouchableOpacity>
+              <TouchableOpacity onPress={signout_button_handler} style={styles.buttonContainer}>
+                <Text>Sign Out</Text>  
+              </TouchableOpacity> 
+
+
             </View>
         </View>
       </View>

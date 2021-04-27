@@ -6,10 +6,51 @@ import {
   Image,
   TouchableOpacity
 } from 'react-native';
+import {openDatabase} from 'expo-sqlite';
 
-export default class volunteerProfile extends Component {
+
+
+
+export default function volunteerProfile({navigation}) {
+  const db = openDatabase("UWMCDatabase");
+  const signout_button_handler = () => {
+    navigation.navigate("Home");
+    navigation.popToTop();
+  }
+
+
+  const view_events_buttonHandler = () => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "select * from Events3",
+         [],
+         (tx, results) => {
+            if(results.rows.length > 0){
+              var listings = [];
+              for(var i = 0; i < results.rows.length; i++){
+                var entry = 
+                {
+                  id: i+1,
+                  title: results.rows._array[i]["Eventname"],
+                  description: results.rows._array["Description"],
+                  image: require("../assets/united.png")
+                }
+                listings.push(entry);
+              }
+              navigation.navigate("ListingsScreen", {listings});
+            }
+         } 
+         
+         
+         );//end of executeSql
+    });
+}
+
+  const view_registered_events_button_handler = () => {
     
-  render() {
+
+  }
+
     return (
       <View style={styles.container}>
           <View style={styles.header}></View>
@@ -20,18 +61,21 @@ export default class volunteerProfile extends Component {
               <Text style={styles.info}>UX Designer / Mobile developer</Text>
               <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
               
-              <TouchableOpacity style={styles.buttonContainer}>
+              <TouchableOpacity onPress={view_events_buttonHandler} style={styles.buttonContainer}>
                 <Text>Look for events</Text>  
               </TouchableOpacity>              
-              <TouchableOpacity style={styles.buttonContainer}>
+              <TouchableOpacity onPress={view_registered_events_button_handler}style={styles.buttonContainer}>
                 <Text>View registered events</Text> 
+              </TouchableOpacity>
+              <TouchableOpacity onPress={signout_button_handler} style={styles.buttonContainer}>
+                <Text>Sign out</Text> 
               </TouchableOpacity>
             </View>
         </View>
       </View>
     );
   }
-}
+
 
 const styles = StyleSheet.create({
   header:{

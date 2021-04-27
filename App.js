@@ -20,7 +20,7 @@ export default function App() {
 
   db.transaction((tx) => {
     tx.executeSql(
-      "create table if not exists Events (Eventname text, Description text, Type text, Address text, Organization text, Date text, Time text)",
+      "create table if not exists Events3 (Eventname text, Description text, Type text, Address text, Organization text, Date text, Time text)",
       []
     );
     console.log("Events table created!");

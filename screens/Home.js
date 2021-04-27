@@ -72,7 +72,7 @@ export default function home({ navigation }) {
                 var len1 = results.rows.length;
                 if (len1 > 0) {
                   //alert("Welcome Back !", email, "!");
-                  navaigation.navigate("volunteerprofile", {email});
+                  navigation.navigate("volunteerprofile", {email});
                 } else {
                   alert("Invalid credentials");
                 }

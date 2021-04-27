@@ -4,35 +4,39 @@ import { FlatList, StyleSheet } from "react-native";
 import Screen from "../components/Screen";
 import Card from "../components/Card";
 import colors from "../config/colors";
+import { openDatabase } from "expo-sqlite";
+var listings = [];
+//   {
+//     id: 1,
+//     title: "Event1",
+//     description: "In Merced",
+//     image: require("../assets/united.png"),
+//   },
+//   {
+//     id: 2,
+//     title: "Event2",
+//     description: "In Atwater",
+//     image: require("../assets/united.png"),
+//   },
+//   {
+//     id: 3,
+//     title: "Event2",
+//     description: "In Atwater",
+//     image: require("../assets/united.png"),
+//   },
+//   {
+//     id: 4,
+//     title: "Event1",
+//     description: "In Merced",
+//     image: require("../assets/united.png"),
+//   },
+// ];
 
-const listings = [
-  {
-    id: 1,
-    title: "Event1",
-    description: "In Merced",
-    image: require("../assets/united.png"),
-  },
-  {
-    id: 2,
-    title: "Event2",
-    description: "In Atwater",
-    image: require("../assets/united.png"),
-  },
-  {
-    id: 3,
-    title: "Event2",
-    description: "In Atwater",
-    image: require("../assets/united.png"),
-  },
-  {
-    id: 4,
-    title: "Event1",
-    description: "In Merced",
-    image: require("../assets/united.png"),
-  },
-];
-
-function ListingsScreen(props) {
+function ListingsScreen({navigation}) {
+  const organization = navigation.getParam('organization');
+  var db = openDatabase("UWMCDatabase");
+ 
+  listings = navigation.getParam('listings');
   return (
     <Screen style={styles.screen}>
       <FlatList
