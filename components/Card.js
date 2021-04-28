@@ -4,14 +4,9 @@ import { View, StyleSheet, Image, Text } from "react-native";
 import AppText from "./AppText";
 import colors from "../config/colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import nonprofitprofile from "../screens/nonprofitprofile";
 
 
-function Card({ title, subTitle, image, address, date, time, name}) {
-  const deleteCard = () => {
-    
-
-  }
+function Card({title, subTitle, image, address, date, time, name}) {
   return (
     <View style={styles.card}>
       <Image style={styles.image} source={image} />
@@ -21,11 +16,6 @@ function Card({ title, subTitle, image, address, date, time, name}) {
         <AppText style={styles.address}>{address}</AppText>
         <AppText style={styles.date}>{date}</AppText>
         <AppText style={styles.time}>{time}</AppText>
-      </View>
-      <View>
-      <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Delete Event</Text>  
-              </TouchableOpacity> 
       </View>
     </View>
   );
