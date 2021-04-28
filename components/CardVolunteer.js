@@ -4,16 +4,11 @@ import { View, StyleSheet, Image, Text } from "react-native";
 import AppText from "./AppText";
 import colors from "../config/colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import nonprofitprofile from "../screens/nonprofitprofile";
 
 
-function Card({ title, subTitle, image, address, date, time, name}) {
-  const deleteCard = () => {
-    
-
-  }
+function CardVolunteer({ title, subTitle, image, address, date, time }) {
   return (
-    <View style={styles.card}>
+    <View style={styles.cardVolunteer}>
       <Image style={styles.image} source={image} />
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}>{title}</AppText>
@@ -24,7 +19,7 @@ function Card({ title, subTitle, image, address, date, time, name}) {
       </View>
       <View>
       <TouchableOpacity style={styles.buttonContainer}>
-                <Text>Delete Event</Text>  
+                <Text>Add Event</Text>  
               </TouchableOpacity> 
       </View>
     </View>
@@ -32,7 +27,7 @@ function Card({ title, subTitle, image, address, date, time, name}) {
 }
 
 const styles = StyleSheet.create({
-  card: {
+  cardVolunteer: {
     borderRadius: 15,
     backgroundColor: colors.white,
     marginBottom: 20,
@@ -80,8 +75,8 @@ const styles = StyleSheet.create({
     marginBottom:20,
     width:100,
     borderRadius:30,
-    backgroundColor: "orangered",
+    backgroundColor: "limegreen",
   },
 });
 
-export default Card;
+export default CardVolunteer;

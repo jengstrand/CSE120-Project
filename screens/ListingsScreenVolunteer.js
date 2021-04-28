@@ -1,8 +1,8 @@
 import React from "react";
-import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 
 import Screen from "../components/Screen";
-import Card from "../components/Card";
+import CardVolunteer from "../components/CardVolunteer";
 import colors from "../config/colors";
 import { openDatabase } from "expo-sqlite";
 var listings = [];
@@ -32,7 +32,7 @@ var listings = [];
 //   },
 // ];
 
-function ListingsScreen({navigation}) {
+function ListingsScreenVolunteer({navigation}) {
   const organization = navigation.getParam('organization');
   var db = openDatabase("UWMCDatabase");
   
@@ -43,7 +43,7 @@ function ListingsScreen({navigation}) {
         data={listings}
         keyExtractor={(listing) => listing.id.toString()}
         renderItem={({ item }) => (
-          <Card 
+          <CardVolunteer
             title={item.title}
             subTitle={item.description}
             image={item.image}
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListingsScreen;
+export default ListingsScreenVolunteer;

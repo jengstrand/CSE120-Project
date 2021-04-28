@@ -54,7 +54,10 @@ export default function nonprofitprofile({ navigation }) {
                                   id: i+1, 
                                   title: results.rows._array[i]["Eventname"],
                                   description: results.rows._array[i]["Description"],
-                                  image: require("../assets/united.png") 
+                                  image: require("../assets/united.png"),
+                                  address: "Address: " + results.rows._array[i]["Address"], 
+                                  date: "Date: " + results.rows._array[i]["Date"],
+                                  time: "Time: " + results.rows._array[i]["Time"],
                                 }
                                 listings.push(entry);
                               }

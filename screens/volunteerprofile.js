@@ -32,12 +32,15 @@ export default function volunteerProfile({navigation}) {
                 {
                   id: i+1,
                   title: results.rows._array[i]["Eventname"],
-                  description: results.rows._array["Description"],
-                  image: require("../assets/united.png")
+                  description: results.rows._array[i]["Description"],
+                  image: require("../assets/united.png"),
+                  address: "Address: " + results.rows._array[i]["Address"], 
+                  date: "Date: " + results.rows._array[i]["Date"],
+                  time: "Time: " + results.rows._array[i]["Time"],
                 }
                 listings.push(entry);
               }
-              navigation.navigate("ListingsScreen", {listings});
+              navigation.navigate("ListingsScreenVolunteer", {listings});
             }
          } 
          
@@ -47,7 +50,7 @@ export default function volunteerProfile({navigation}) {
 }
 
   const view_registered_events_button_handler = () => {
-    
+
 
   }
 
@@ -57,10 +60,6 @@ export default function volunteerProfile({navigation}) {
           <Image style={styles.avatar} source={require("../assets/volunteerIcon.png")}/>
           <View style={styles.body}>
             <View style={styles.bodyContent}>
-              <Text style={styles.name}>John Doe</Text>
-              <Text style={styles.info}>UX Designer / Mobile developer</Text>
-              <Text style={styles.description}>Lorem ipsum dolor sit amet, saepe sapientem eu nam. Qui ne assum electram expetendis, omittam deseruisse consequuntur ius an,</Text>
-              
               <TouchableOpacity onPress={view_events_buttonHandler} style={styles.buttonContainer}>
                 <Text>Look for events</Text>  
               </TouchableOpacity>              
