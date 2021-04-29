@@ -2,7 +2,7 @@ import React from "react";
 import { View, FlatList, StyleSheet, TouchableOpacity, Text } from "react-native";
 
 import Screen from "../components/Screen";
-import Card from "../components/Card";
+import ViewRegistrantsCard from "../components/ViewRegistrantsCard";
 import colors from "../config/colors";
 import { openDatabase } from "expo-sqlite";
 var listings = [];
@@ -45,15 +45,15 @@ function deleteCard (item) {
   // });s
 }
 
-function ListingsScreen({navigation}) {
-  const organization = navigation.getParam('organization');
+function ViewRegistrantsScreen({navigation}) {
+  
   var db = openDatabase("UWMCDatabase");
- // const [t, setT] = useState("");
+ 
 
   
   listings = navigation.getParam('listings');
   
-   // tester1 =navigation.navigate("nonprofitprofile"); 
+    
   
  
 
@@ -66,16 +66,10 @@ function ListingsScreen({navigation}) {
         keyExtractor={(listing) => listing.id.toString()}
         renderItem={({ item }) => (
           <View> 
-            <Card 
-              title={item.title}
-              subTitle={item.description}
-              image={item.image}
-              address={item.address}
-              date = {item.date}
-              time = {item.time}
-              org = {item.org}
-              nav = {item.nav}
-              
+            <ViewRegistrantsCard 
+              email={item.email}
+              image = {item.image}
+              fullname = {item.fullname}
             /> 
           </View>
         )}
@@ -107,4 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListingsScreen;
+export default ViewRegistrantsScreen;

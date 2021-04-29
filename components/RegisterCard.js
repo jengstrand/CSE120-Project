@@ -7,29 +7,17 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import {openDatabase} from "expo-sqlite";
 
 
-function CardVolunteer({ title, subTitle, image, address, date, time,nav, email, org }) {
+function RegisterCard({ title, subTitle, image, address, date, time,nav, email, org }) {
  var db = openDatabase("UWMCDatabase");
-  const addEvent = () => {
+  const deleteEvent = () => {
     db.transaction((tx) => {
-      tx.executeSql(
-        "select *  from EventsVolunteer2 where Email=? and Organization = ? and Eventname = ?",
-            [email, org, title], (tx, results) => {
-              if(results.rows.length > 0){
-                alert("You have already added this event!");
-              }
-              else{
-                tx.executeSql(
-                  "insert into EventsVolunteer2 (Email, Eventname, Description, Address, Organization, Date, Time) values (?,?,?,?,?,?,?)",
-                      [email, title, subTitle,address, org, date, time], (tx, results) => {
-                        alert("Event added!");
-                      }
-                );
-                
-              }
+        tx.executeSql(
+        "delete from EventsVolunteer2 where Email = ? and Organization = ?",
+            [email,org], (tx, results) => {
+                nav.navigate("volunteerprofile");
+                alert("Event Deleted");
             }
       );
-      
-      
     });
   }
   return (
@@ -43,8 +31,8 @@ function CardVolunteer({ title, subTitle, image, address, date, time,nav, email,
         <AppText style={styles.time}>{time}</AppText>
       </View>
       <View>
-      <TouchableOpacity onPress = {addEvent} style={styles.buttonContainer}>
-                <Text>Add Event</Text>  
+      <TouchableOpacity onPress = {deleteEvent} style={styles.buttonContainer}>
+                <Text>Delete Event</Text>  
               </TouchableOpacity> 
       </View>
     </View>
@@ -100,8 +88,8 @@ const styles = StyleSheet.create({
     marginBottom:20,
     width:100,
     borderRadius:30,
-    backgroundColor: "limegreen",
+    backgroundColor: "orangered",
   },
 });
 
-export default CardVolunteer;
+export default RegisterCard;

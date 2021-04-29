@@ -55,95 +55,101 @@ export default function createevent({ navigation }) {
       };
 
     return (
-      <View>
-          <ScrollView>
-            <View style={styles.container}>
-            <Image
-                source={require("../assets/eventlogo.png")}
-                style={{
-                height: 200,
-                width: 250,
-                resizeMode: "stretch",
-                marginBottom: 20,
-                }}
-            />
-             <View style={styles.inputView}>
-                <TextInput
-                style={styles.inputText}
-                placeholder="Organization Name..."
-                placeholderTextColor="white"
-                onChangeText={(e) => {
-                    setOrgNameReg(e);
-                }}
-                />
-            </View>
-             <View style={styles.inputView}>
-                <TextInput
-                style={styles.inputText}
-                placeholder="Event Name..."
-                placeholderTextColor="white"
-                onChangeText={(e) => {
-                    setEventNameReg(e);
-                }}
-                />
-            </View>
-            <View style={styles.inputView}>
-                <TextInput
-                style={styles.inputText}
-                placeholder="Event type..."
-                placeholderTextColor="white"
-                onChangeText={(e) => {
-                    setEventTypeReg(e);
-                }}
-                />
-            </View>
-            <View style={styles.inputView}>
-                <TextInput
-                style={styles.inputText}
-                placeholder="Event description..."
-                placeholderTextColor="white"
-                onChangeText={(e) => {
-                    setEventDescriptionReg(e);
-                }}
-                />
-            </View>
-            <View style={styles.inputView}>
-                <TextInput
-                style={styles.inputText}
-                placeholder="Address..."
-                placeholderTextColor="white"
-                onChangeText={(e) => {
-                    setAddressReg(e);
-                }}
-                />
-            </View>
-            <View style={styles.inputView}>
-                <TextInput
-                style={styles.inputText}
-                placeholder="Event date"
-                placeholderTextColor="white"
-                onChangeText={(e) => {
-                    setDateReg(e);
-                }}
-                />
-            </View>
-            <View style={styles.inputView}>
-                <TextInput
-                style={styles.inputText}
-                placeholder="Event time"
-                placeholderTextColor="white"
-                onChangeText={(e) => {
-                    setTimeReg(e);
-                }}
-                />
-            </View>
-           
-            <TouchableOpacity onPress={register} style={styles1.loginBtn}>
-                <Text style={styles.loginText}>Create event</Text>
-            </TouchableOpacity>
-            </View>
-          </ScrollView>
-      </View>
+      <ImageBackground
+      blurRadius={2}
+      source={require("../assets/volunteerbg.png")}
+      style={styles.ImageBackground}
+      >
+        <View>
+            <ScrollView>
+              <View style={styles.container}>
+              <Image
+                  source={require("../assets/eventlogo2.png")}
+                  style={{
+                  height: 200,
+                  width: 250,
+                  resizeMode: "stretch",
+                  marginBottom: 20,
+                  }}
+              />
+              <View style={styles.inputView}>
+                  <TextInput
+                  style={styles.inputText}
+                  placeholder="Organization Name..."
+                  placeholderTextColor="white"
+                  onChangeText={(e) => {
+                      setOrgNameReg(e);
+                  }}
+                  />
+              </View>
+              <View style={styles.inputView}>
+                  <TextInput
+                  style={styles.inputText}
+                  placeholder="Event Name..."
+                  placeholderTextColor="white"
+                  onChangeText={(e) => {
+                      setEventNameReg(e);
+                  }}
+                  />
+              </View>
+              <View style={styles.inputView}>
+                  <TextInput
+                  style={styles.inputText}
+                  placeholder="Event type..."
+                  placeholderTextColor="white"
+                  onChangeText={(e) => {
+                      setEventTypeReg(e);
+                  }}
+                  />
+              </View>
+              <View style={styles.inputView}>
+                  <TextInput
+                  style={styles.inputText}
+                  placeholder="Event description..."
+                  placeholderTextColor="white"
+                  onChangeText={(e) => {
+                      setEventDescriptionReg(e);
+                  }}
+                  />
+              </View>
+              <View style={styles.inputView}>
+                  <TextInput
+                  style={styles.inputText}
+                  placeholder="Address..."
+                  placeholderTextColor="white"
+                  onChangeText={(e) => {
+                      setAddressReg(e);
+                  }}
+                  />
+              </View>
+              <View style={styles.inputView}>
+                  <TextInput
+                  style={styles.inputText}
+                  placeholder="Event date"
+                  placeholderTextColor="white"
+                  onChangeText={(e) => {
+                      setDateReg(e);
+                  }}
+                  />
+              </View>
+              <View style={styles.inputView}>
+                  <TextInput
+                  style={styles.inputText}
+                  placeholder="Event time"
+                  placeholderTextColor="white"
+                  onChangeText={(e) => {
+                      setTimeReg(e);
+                  }}
+                  />
+              </View>
+            
+              <TouchableOpacity onPress={register} style={styles1.loginBtn}>
+                  <Text style={styles.loginText}>Create event</Text>
+              </TouchableOpacity>
+              </View>
+            </ScrollView>
+        </View>
+        </ImageBackground>
     );
 }
 

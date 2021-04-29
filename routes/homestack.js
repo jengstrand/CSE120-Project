@@ -8,6 +8,9 @@ import volunteerprofile from "../screens/volunteerprofile";
 import createevent from "../screens/createevent";
 import ListingsScreen from "../screens/ListingsScreen";
 import ListingsScreenVolunteer from "../screens/ListingsScreenVolunteer";
+import Card from "../components/Card";
+import registeredEvents from "../screens/registeredEvents";
+import ViewRegistrantsScreen from "../screens/ViewRegistrantsScreen";
 
 const screens = {
   Home: {
@@ -16,6 +19,16 @@ const screens = {
       headerShown:false
     }
   },
+
+  registeredEvents: {
+    screen: registeredEvents,
+    navigationOptions: {
+    }
+  },
+
+  Card: {
+    screen: Card, 
+  }, 
 
   volunteersignup: {
     screen: volunteersignup,
@@ -63,6 +76,12 @@ const screens = {
     screen: ListingsScreenVolunteer,
     navigationOptions: {
       title: 'Browse Events'
+    }
+  },
+  ViewRegistrantsScreen: {
+    screen: ViewRegistrantsScreen,
+    navigationOptions: {
+      title: 'Registrants'
     }
   },
 

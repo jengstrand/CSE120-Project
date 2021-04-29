@@ -58,10 +58,15 @@ export default function nonprofitprofile({ navigation }) {
                                   address: "Address: " + results.rows._array[i]["Address"], 
                                   date: "Date: " + results.rows._array[i]["Date"],
                                   time: "Time: " + results.rows._array[i]["Time"],
+                                  org: results.rows._array[i]["Organization"], 
+                                  nav: navigation,
                                 }
                                 listings.push(entry);
                               }
                               navigation.navigate("ListingsScreen",{listings});
+                            }
+                            else {
+                              alert("Please create your first event!"); 
                             }
 
                             

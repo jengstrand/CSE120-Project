@@ -13,6 +13,9 @@ import {openDatabase} from 'expo-sqlite';
 
 export default function volunteerProfile({navigation}) {
   const db = openDatabase("UWMCDatabase");
+  const email = navigation.getParam('email');
+ 
+  
   const signout_button_handler = () => {
     navigation.navigate("Home");
     navigation.popToTop();
@@ -37,6 +40,9 @@ export default function volunteerProfile({navigation}) {
                   address: "Address: " + results.rows._array[i]["Address"], 
                   date: "Date: " + results.rows._array[i]["Date"],
                   time: "Time: " + results.rows._array[i]["Time"],
+                  org: results.rows._array[i]["Organization"],
+                  email:email, 
+                  nav:navigation, 
                 }
                 listings.push(entry);
               }
@@ -50,6 +56,39 @@ export default function volunteerProfile({navigation}) {
 }
 
   const view_registered_events_button_handler = () => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "select * from EventsVolunteer2 where Email = ?",
+         [email],
+         (tx, results) => {
+            if(results.rows.length > 0){
+              var listings = [];
+              for(var i = 0; i < results.rows.length; i++){
+                console.log(results.rows._array);
+                var entry = 
+                {
+                  id: i+1,
+                  title: results.rows._array[i]["Eventname"],
+                  description: results.rows._array[i]["Description"],
+                  image: require("../assets/united.png"),
+                  address: "Address: " + results.rows._array[i]["Address"], 
+                  date: "Date: " + results.rows._array[i]["Date"],
+                  time: "Time: " + results.rows._array[i]["Time"],
+                  org: results.rows._array[i]["Organization"],
+                  email:email, 
+                  nav:navigation, 
+                }
+                listings.push(entry);
+              }
+              navigation.navigate("registeredEvents", {listings});
+            } else{
+              alert("You are not registered for any events");
+            }
+         } 
+         
+         
+         );//end of executeSql
+    });
 
 
   }

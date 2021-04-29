@@ -22,7 +22,13 @@ export default function App() {
     tx.executeSql(
       "create table if not exists Events3 (Eventname text, Description text, Type text, Address text, Organization text, Date text, Time text)",
       []
+    ); 
+    //create table if not exists EventsVolunteer2 (Email text, Eventname text, Description text, Address text, Organization text, Date text, Time text)",
+    tx.executeSql(
+      "create table if not exists EventsVolunteer2 (Email text, Eventname text, Description text, Address text, Organization text, Date text, Time text)",
+      []
     );
+
     console.log("Events table created!");
     tx.executeSql(
       "create table if not exists Volunteer (Email text, Password text, Firstname text, Lastname text, PhoneNumber text)",
