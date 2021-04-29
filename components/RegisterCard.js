@@ -29,6 +29,7 @@ function RegisterCard({ title, subTitle, image, address, date, time,nav, email, 
         <AppText style={styles.address}>{address}</AppText>
         <AppText style={styles.date}>{date}</AppText>
         <AppText style={styles.time}>{time}</AppText>
+        <AppText style={styles.time}>{org}</AppText>
       </View>
       <View>
       <TouchableOpacity onPress = {deleteEvent} style={styles.buttonContainer}>

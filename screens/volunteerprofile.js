@@ -40,7 +40,7 @@ export default function volunteerProfile({navigation}) {
                   address: "Address: " + results.rows._array[i]["Address"], 
                   date: "Date: " + results.rows._array[i]["Date"],
                   time: "Time: " + results.rows._array[i]["Time"],
-                  org: results.rows._array[i]["Organization"],
+                  org: "Organization: " + results.rows._array[i]["Organization"],
                   email:email, 
                   nav:navigation, 
                 }
@@ -74,7 +74,7 @@ export default function volunteerProfile({navigation}) {
                   address: "Address: " + results.rows._array[i]["Address"], 
                   date: "Date: " + results.rows._array[i]["Date"],
                   time: "Time: " + results.rows._array[i]["Time"],
-                  org: results.rows._array[i]["Organization"],
+                  org:  results.rows._array[i]["Organization"],
                   email:email, 
                   nav:navigation, 
                 }
